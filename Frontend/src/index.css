@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .flex-1::-webkit-scrollbar{
+  display: none;
+} */
+
+.messages-container::-webkit-scrollbar {
+  display: none;
+}
+
+.messages-container {
+  -ms-overflow-style: none; /* Hide scrollbar in IE */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}

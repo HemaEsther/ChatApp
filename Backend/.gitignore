@@ -1,0 +1,94 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+*.pid
+*.pid.lock
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+dist/
+build/
+.npm/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.pyo
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.log
+target/
+*.iml
+.gradle/
+build/
+
+# C/C++
+*.out
+*.obj
+*.exe
+*.dll
+*.lib
+*.so
+*.o
+*.a
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# React/Angular/Other Frontend Frameworks
+build/
+coverage/
+*.cache/
+.eslintcache
+.vite/
+.svelte-kit/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Git
+!.gitignore
+
+# Other
+*.lock
+*.tmp
+*.log
+*.sqlite3
+*.env
