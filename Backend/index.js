@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import userRoute from "./routes/user.route.js";
 
@@ -9,6 +11,8 @@ dotenv.config();
 
 //middleware
 app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
 
 const PORT = process.env.PORT || 8000;
 const URI = process.env.MONGO_DBURI;
@@ -21,7 +25,7 @@ try {
 }
 
 //routes
-app.use("/user",userRoute);
+app.use("/api/user",userRoute);
 
 app.get("/",(req,res)=>{
     res.send("Hello");

@@ -19,11 +19,17 @@ export const signup= async (req,res)=>{
             fullname,
             email,
             password:hashpassword,
-        })
+        });
         await newUser.save();
         if(newUser){
             createTokenandSaveCookie(newUser._id,res);
-            res.status(201).json({message:"user created successfully",newUser});
+            res.status(201).json({message:"user created successfully",
+                user:{
+                    _id:newUser._id,
+                    fullname:newUser.fullname,
+                    email:newUser.email
+                   },
+            });
         }
         
     } catch (error) {
@@ -57,12 +63,22 @@ export const login = async(req,res)=>{
     }
 }
 
-export const logout = async () => {
+export const logout = async (req,res) => {
     try {
         res.clearCookie("jwt");
         res.status(201).json({message:"user logged out successfully"});
     } catch (error) {
         console.log(error);
         res.status(500).json({error:"Internal server error"});
+    }
+}
+
+export const allUsers = async(req,res) => {
+    try {
+        const loggedInUser = req.user._id;
+       const filteredUsers = await User.find({_id:{$ne: loggedInUser},}).select("-password");
+       res.status(201).json(filteredUsers);
+    } catch (error) {
+        console.log("Error in alluser controller: " + error);
     }
 }
