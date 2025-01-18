@@ -50,7 +50,7 @@ export const login = async(req,res)=>{
        const isMatch = await bcrypt.compare(password,user.password)
        if (!isMatch) {
         return res.status(400).json({ error: "Invalid user credentials" });
-    }
+        }
        createTokenandSaveCookie(user._id,res)
        res.status(200).json({message:"user logged in successfully",user:{
         _id:user._id,

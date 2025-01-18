@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import userRoute from "./routes/user.route.js";
+import messageRoute from "./routes/message.route.js";
 
 const app = express();
 dotenv.config();
@@ -18,19 +19,20 @@ const PORT = process.env.PORT || 8000;
 const URI = process.env.MONGO_DBURI;
 
 try {
-    mongoose.connect(URI)
-    console.log("connected to database");
+  mongoose.connect(URI);
+  console.log("connected to database");
 } catch (error) {
-    console.log(error)
+  console.log(error);
 }
 
 //routes
-app.use("/api/user",userRoute);
+app.use("/api/user", userRoute);
+app.use("/api/message", messageRoute);
 
-app.get("/",(req,res)=>{
-    res.send("Hello");
+app.get("/", (req, res) => {
+  res.send("Hello");
 });
 
-app.listen(PORT,()=>{
-    console.log(`ex app listening on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`ex app listening on port ${PORT}`);
 });

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import cookies from "js-cookie";
+import Cookies from "js-cookie";
 import { createContext } from 'react';
-import Cookies from 'js-cookie';
 import { useContext } from 'react';
 
 

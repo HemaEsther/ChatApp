@@ -3,8 +3,7 @@ import User from './User'
 import useGetAlluser from '../../context/useGetAlluser'
 
 const Users = () => {
-  const [allUsers,loading] = useGetAlluser()
-  console.log(allUsers)
+  const [allUsers,loading] = useGetAlluser();
   return (
     <div>
         <h1 className='px-8 py-2 text-white font-semibold bg-slate-800 rounded-md'>Messages</h1>

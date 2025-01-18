@@ -1,17 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoMdSend } from "react-icons/io";
+import useSendMessage from '../../context/useSendMessage';
 
 const Typesend = () => {
+  const [message, setMessage] = useState("")
+  const { loading, sendMessages} = useSendMessage();
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    await sendMessages(message)
+    setMessage("")
+  };
   return (
-    <div className='flex space-x-1 h-[8vh] bg-gray-800'>
+    <form onSubmit={handleSubmit}>
+      <div className='flex space-x-1 h-[8vh] bg-gray-800'>
         <div className='w-[70%] mx-4'>
-        <input type="text" placeholder="Type here" className="border border-gray-700 mt-1 rounded-xl outline-none px-4 py-3 w-full" />
+        <input 
+          type="text" 
+          placeholder="Type here" 
+          value={message} 
+          onChange={(e)=>setMessage(e.target.value)} 
+          className="border border-gray-700 mt-1 rounded-xl outline-none px-4 py-3 w-full" 
+        />
         </div>
-        <button>
-        <IoMdSend className='text-3xl' />
+        <button disabled={loading} type='submit' >
+          <IoMdSend className='text-3xl' />
         </button>
     </div>
-  )
+    </form>
+  );
 }
 
 export default Typesend
