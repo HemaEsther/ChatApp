@@ -15,7 +15,7 @@ const useSendMessage = () => {
                     {message}
                 );
                 const newMessage = res.data.newMessage;
-                console.log("Response from API:", res.data.newMessage.message);
+                // console.log("Response from API:", res.data.newMessage.message);
                 setMessage([...messages, { ...newMessage, isLocal: true }]);
                 setLoading(false)
             } catch (error) {

@@ -6,8 +6,9 @@ import cookieParser from "cookie-parser";
 
 import userRoute from "./routes/user.route.js";
 import messageRoute from "./routes/message.route.js";
+import {app, server} from "./SocketIO/server.js";
 
-const app = express();
+
 dotenv.config();
 
 //middleware
@@ -33,6 +34,6 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`ex app listening on port ${PORT}`);
 });

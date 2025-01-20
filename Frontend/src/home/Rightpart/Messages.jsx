@@ -2,34 +2,34 @@ import React, { useEffect, useRef } from "react";
 import Message from "./Message.jsx";
 import useGetMessage from "../../context/useGetMessage.js";
 import Loading from "../../components/Loading.jsx";
+import useGetSocketMessage from "../../context/useGetSocketMessage.js";
 
 function Messages() {
-  const { loading, messages } = useGetMessage();
+  const { loading, messages } = useGetMessage(); 
+  useGetSocketMessage();   //listening incoming messages
 
   // Scrolling
-  const lastMsgRef = useRef(null);
+  const lastMsgRef = useRef();
 
   useEffect(() => {
-    if (lastMsgRef.current) {
-      lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    setTimeout(()=> {
+      if (lastMsgRef.current) {
+        lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    },100)
+   
   }, [messages]);
 
   return (
-    <div
-      className="flex-1 overflow-y-auto messages-container"
-      style={{ minHeight: "calc(92vh - 8vh)" }}
-    >
+    <div className="flex-1 overflow-y-auto messages-container" style={{ minHeight: "calc(92vh - 8vh)" }}>
       {loading ? (
         <Loading />
-      ) : (
-        messages.length > 0 &&
-        messages.map((message, index) => (
-          <Message
-            key={message._id || `message-${index}`}
-            message={message}
-            ref={index === messages.length - 1 ? lastMsgRef : null}
-          />
+      ) : (     
+        messages.length > 0 && messages.map((message, index) => (
+
+          <div  key={message._id} ref={lastMsgRef}>
+            <Message message={message}/>
+          </div>
         ))
       )}
 
