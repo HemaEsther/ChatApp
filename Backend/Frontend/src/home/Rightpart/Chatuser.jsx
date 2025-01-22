@@ -7,8 +7,6 @@ const Chatuser = () => {
   const { selectedConversation } = UseConversation(); // Destructure state properly
   const { onlineUsers } = useSocketContext(); // Destructure onlineUsers from socket context
 
-
-
   const getOnlineUserStatus = (userId) => {
     return onlineUsers.includes(userId) ? "Online" : "Offline";
   };
@@ -17,9 +15,8 @@ const Chatuser = () => {
     return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&size=128`;
   };
 
-
   return (
-    <div className="relative  flex items-center h-[8%] justify-center gap-4 bg-slate-800 ">
+    <div className="sticky top-0 z-50 flex items-center h-[8%] justify-center gap-4 bg-slate-800">
       {/* Drawer button for mobile view */}
       <label
         htmlFor="my-drawer-2"
@@ -33,7 +30,7 @@ const Chatuser = () => {
         {/* User Avatar */}
         <div className={`avatar ${getOnlineUserStatus(selectedConversation?._id).toLowerCase()} ml-2`}>
           <div className="w-12 rounded-full">
-          <img src={getAvatar(selectedConversation?.fullname)} alt="User Avatar" />
+            <img src={getAvatar(selectedConversation?.fullname)} alt="User Avatar" />
           </div>
         </div>
 
